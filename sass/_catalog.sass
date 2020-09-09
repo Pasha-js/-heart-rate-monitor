@@ -36,6 +36,7 @@
         margin-top: 60px
         display: none
         justify-content: space-between
+        align-items: center
         flex-wrap: wrap
         &_active
             display: flex      
@@ -43,7 +44,7 @@
         width: 300px
         min-height: 440px
         border: 2px solid #e8e8e8
-        padding: 20px 20px 26px 20px
+        padding: 20px 20px 26px -10px
         overflow: hidden 
         margin-bottom: 20px
         &__img
@@ -83,6 +84,7 @@
            margin-bottom: 21px
            border-bottom: none
         &__footer
+            width: 96%
             display: flex
             justify-content: space-between
             align-items: center
@@ -92,11 +94,13 @@
             font-weight: 300
             color: #555555
             text-decoration: line-through
+            margin-left: 10px
         &__price
             font-family: MuseoSansCyrl
             font-size: 20px
             font-weight: 700
             color: #050505
+            margin-left: 10px
         &__wrapper
             display: flex
             width: calc(200% + 40px)
@@ -110,7 +114,7 @@
                 margin-right: 20px
         &__list
             position: relative
-            width: 50%
+            width: 47%
             margin-left: 20px
             transform: translateX(0%)
             padding-right: 20px
@@ -120,7 +124,7 @@
             list-style-type: none
             &_active
                 transform: translateX(-100%)
-                margin-left: 0px
+                margin-left: 20px
             li
                 position: relative
                 font-family: MuseoSansCyrl
