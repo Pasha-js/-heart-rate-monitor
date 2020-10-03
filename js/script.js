@@ -24,7 +24,7 @@ $(document).ready(function(){
     toggleSlide('.catalog-item__link');
     toggleSlide('.catalog-item__back');
 
-    //Modal
+    //Modal 
 
     $('[data-modal=consultation]').on('click', function(){
       $('.overlay, #consultation').fadeIn('slow');
@@ -39,5 +39,53 @@ $(document).ready(function(){
         $('.overlay, #order').fadeIn('slow');
       })
 
-    })
+    });
+
+    
+    $('#order form').validate();
+
+    function valideForms(form) {
+      $('#consultation form').validate({
+        rules: {
+          name: "required",
+          phone: "required",
+          email: {
+            required: true,
+            email: true
+          }
+        },
+        messages: {
+          name: "Пожалуйста введите свое имя",
+          phone: "Пожалуйста введите свой номер телефона",
+          email: {
+            required: "Пожалуйста введите свою почту",
+            email: "Неправильно введен адрес почты"
+          }
+        }
+  
+      });
+    };
+
+    valideForms('#consultation-form');
+    valideForms('#consultation form');
+    valideForms('#order form');
+
+    $('input[name=phone]').mask("+ 7(999) 999-9999");
+    
+    $('form').submit(function(){
+      e.preventDefault();
+      $.ajax({
+        type: "POST",
+        url:"mailer/smart.php",
+        data: $(this).serialize()
+      }).done(function() {
+        $(this).find("input").value("");
+        $('#consultation, #order').fadeOut();
+        $('.overlay, #thanks').fadeIn('slow');
+
+        $('form').trigger('reset');
+      });
+      return false
+    });
+    
   }); 
